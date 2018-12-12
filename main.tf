@@ -17,6 +17,8 @@ resource "aws_route53_record" "this" {
   zone_id = "${data.aws_route53_zone.zone.id}"
   records = ["${aws_acm_certificate.this.domain_validation_options.0.resource_record_value}"]
   ttl     = 60
+
+  provider = "aws.dns"
 }
 
 resource "aws_acm_certificate_validation" "dns_validation" {
