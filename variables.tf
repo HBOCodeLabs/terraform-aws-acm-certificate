@@ -27,3 +27,9 @@ variable "hosted_zone_name" {
   description = "Need for DNS validation, hosted zone name where record validation will be stored."
   type        = "string"
 }
+
+variable "enable_validation" {
+  description = "Should we run the validation step or not.  Used for testing"
+  type        = "string"
+  default     = "true"
+}

@@ -24,4 +24,6 @@ resource "aws_route53_record" "this" {
 resource "aws_acm_certificate_validation" "dns_validation" {
   certificate_arn         = "${aws_acm_certificate.this.arn}"
   validation_record_fqdns = ["${aws_route53_record.this.fqdn}"]
+
+  count = "${var.enable_validation ? 1 : 0}"
 }
