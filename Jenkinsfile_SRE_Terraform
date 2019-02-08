@@ -1,4 +1,4 @@
-library('sre-jenkinsfile@rrusso1982/terratest_sshkey')
+library('sre-jenkinsfile@master')
 
 pipeline {
     agent {
