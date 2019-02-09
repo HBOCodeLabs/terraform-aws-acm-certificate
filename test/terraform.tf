@@ -16,7 +16,7 @@ module "acm_cert" {
   product_domain    = "${var.product_domain}"
   description       = "${var.description}"
   domain_name       = "${var.domain_name}"
-  hosted_zone_name  = "${module.dns_zone.route53_zone_name}"
+  hosted_zone_id    = "${module.dns_zone.route53_zone_id}"
 
   enable_validation = "${var.enable_validation}"
 }
