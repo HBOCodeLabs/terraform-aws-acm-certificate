@@ -7,7 +7,7 @@ resource "aws_acm_certificate" "this" {
     ProductDomain = "${var.product_domain}"
     Environment   = "${var.environment}"
     Description   = "${var.description}"
-    ManagedBy     = "terraform"
+    managed_by    = "terraform"
   }
 }
 
