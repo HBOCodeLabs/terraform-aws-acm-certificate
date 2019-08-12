@@ -10,6 +10,9 @@ variable "cluster" {
 variable "service" {
   type    = "string"
 }
+variable "project" {
+  type    = "string"
+}
 
 /* VPC ID for private zone */
 variable "vpc_id" {

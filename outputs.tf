@@ -9,6 +9,6 @@ output "acm_certificate_dns_validation_record" {
 }
 
 output "acm_certificate_domain_name" {
-  description = "the domain name fo the certificate"
+  description = "the domain name of the certificate"
   value       = "${aws_acm_certificate.this.domain_name}"
 }

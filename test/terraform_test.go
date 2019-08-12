@@ -17,24 +17,6 @@ func TestTerraform(t *testing.T) {
     terraformOptions := &terraform.Options{
 		TerraformDir: ".",
 
-		// Variables to pass to our Terraform code using -var options
-		Vars: map[string]interface{}{
-			"region": "us-east-1",
-			"environment": "sandbox",
-			"cluster": "sre",
-			"service": "ecs",
-			"project": "srecore",
-
-			"vpc_id": "vpc-00d6b51d02b2d5160",
-            "hosted_zone_name": "sandbox-terratest.hbo.com",
-
-            "domain_name": "*.sandbox-terratest.hbo.com",
-            "certificate_name": "sandbox-terratest.hbo.com",
-            "description": "sandbox terratest",
-            "product_domain": "sandbox",
-            "enable_validation": "false",
-		},
-
 		// Environment variables to set when running Terraform
 		EnvVars: map[string]string{
 			"AWS_DEFAULT_REGION": "us-east-1",
