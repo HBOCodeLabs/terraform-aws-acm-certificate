@@ -3,11 +3,11 @@ resource "aws_acm_certificate" "this" {
   validation_method = "DNS"
 
   tags = {
-    Name          = "${var.certificate_name}"
-    ProductDomain = "${var.product_domain}"
-    Environment   = "${var.environment}"
-    Description   = "${var.description}"
-    managed_by    = "terraform"
+    environment               = "${var.environment}"
+    cluster                   = "${var.cluster}"
+    service                   = "${var.service}"
+    project                   = "${var.project}"
+    managed_by                = "terraform"
   }
 }
 

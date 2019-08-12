@@ -1,3 +1,24 @@
+/* Which AWS Region to deploy into */
+variable "region" {
+  type    = "string"
+}
+/* The operational environment of this infrastructure */
+variable "environment" {
+  type    = "string"
+}
+/* The cluster that this infrastructure will operate */
+variable "cluster" {
+  type    = "string"
+}
+/* The service that this cluster will operate */
+variable "service" {
+  type    = "string"
+}
+/* The project being worked on */
+variable "project" {
+  type    = "string"
+}
+
 variable "certificate_name" {
   description = "Name of the ACM certificate."
   type        = "string"
@@ -5,11 +26,6 @@ variable "certificate_name" {
 
 variable "product_domain" {
   description = "Abbreviation of the product domain this ACM certificate belongs to."
-  type        = "string"
-}
-
-variable "environment" {
-  description = "Environment this ACM certificate belongs to."
   type        = "string"
 }
 
@@ -37,5 +53,5 @@ variable "hosted_zone_id" {
 variable "enable_validation" {
   description = "Should we run the validation step or not.  Used for testing"
   type        = "string"
-  default     = "true"
+  default     = true
 }
