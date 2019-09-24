@@ -19,8 +19,6 @@ module "acm_cert" {
   project           = "${var.project}"
 
   certificate_name  = "${var.certificate_name}"
-  product_domain    = "${var.product_domain}"
-  description       = "${var.description}"
   domain_name       = "${var.domain_name}"
   hosted_zone_id    = "${module.dns_zone.route53_zone_id}"
 
