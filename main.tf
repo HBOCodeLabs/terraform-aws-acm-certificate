@@ -3,6 +3,8 @@ resource "aws_acm_certificate" "this" {
   validation_method = "DNS"
 
   tags = {
+    Name                      = "${var.certificate_name}"
+    name                      = "${var.certificate_name}"
     environment               = "${var.environment}"
     cluster                   = "${var.cluster}"
     service                   = "${var.service}"
@@ -17,6 +19,8 @@ resource "aws_route53_record" "this" {
   zone_id = "${element(compact(concat(list(var.hosted_zone_id), data.aws_route53_zone.zone.*.id)), 0)}"
   records = ["${aws_acm_certificate.this.domain_validation_options.0.resource_record_value}"]
   ttl     = 60
+
+  allow_overwrite = true
 
   provider = "aws.dns"
 }

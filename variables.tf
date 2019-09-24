@@ -24,16 +24,6 @@ variable "certificate_name" {
   type        = "string"
 }
 
-variable "product_domain" {
-  description = "Abbreviation of the product domain this ACM certificate belongs to."
-  type        = "string"
-}
-
-variable "description" {
-  description = "Free form description of this ACM certificate."
-  type        = "string"
-}
-
 variable "domain_name" {
   description = "Domain name the certificate is issued for."
   type        = "string"
