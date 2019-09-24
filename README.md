@@ -22,8 +22,6 @@ with 0.11 is version 2019.2.15.2-8.
 | service | The service that this cluster will operate | string | `None` | yes |
 | project | The project being worked on | string | `None` | yes |
 | certificate_name | Name of the ACM certificate | string | `None` | yes |
-| product_domain | Abbreviation of the product domain this ACM certificate belongs to | string | `None` | yes |
-| description | Free form description of this ACM certificate | string | `None` | yes |
 | domain_name | Domain name the certificate is issued for | string | `None` | yes |
 | hosted_zone_name | Need for DNS validation, hosted zone name where record validation will be stored | string | `Empty` | no |
 | hosted_zone_id | Need for DNS validation, hosted zone ID used when zone being created inline | string | `Empty` | no |

@@ -23,12 +23,6 @@ variable "vpc_id" {
 variable "certificate_name" {
   type        = "string"
 }
-variable "product_domain" {
-  type        = "string"
-}
-variable "description" {
-  type        = "string"
-}
 variable "domain_name" {
   type        = "string"
 }
