@@ -1,54 +1,48 @@
-/* Which AWS Region to deploy into */
+variable "environment" {
+  type        = "string"
+}
 variable "region" {
   type    = "string"
 }
-/* The operational environment of this infrastructure */
-variable "environment" {
-  type    = "string"
-}
-/* The cluster that this infrastructure will operate */
 variable "cluster" {
   type    = "string"
 }
-/* The service that this cluster will operate */
 variable "service" {
   type    = "string"
 }
-/* The project being worked on */
 variable "project" {
   type    = "string"
 }
 
+/* VPC ID for private zone */
+variable "vpc_id" {
+  type    = "string"
+  default = ""
+}
+
 variable "certificate_name" {
-  description = "Name of the ACM certificate."
   type        = "string"
 }
-
 variable "domain_name" {
-  description = "Domain name the certificate is issued for."
   type        = "string"
 }
 
-variable "hosted_zone_name" {
-  description = "Need for DNS validation, hosted zone name where record validation will be stored."
-  type        = "string"
-  default     = ""
-}
+#variable "hosted_zone_name" {
+#  type        = "string"
+#}
+
 variable "hosted_zone_id" {
-  description = "Need for DNS validation, hosted zone ID used when zone being created inline."
   type        = "string"
-  default     = ""
 }
 
 variable "hosted_zone_id_nonprod" {
-  description = "Need for DNS validation, hosted zone ID used when zone being created inline."
   type        = "string"
-  default     = ""
 }
+
 variable "enable_validation" {
   description = "Should we run the validation step or not.  Used for testing"
   type        = "string"
-  default     = true
+  default     = "true"
 }
 
 variable "subject_alternative_names" {
@@ -62,3 +56,23 @@ variable "subject_alternative_names_nonprod" {
   type        = "list"
   default     = [] 
 }
+
+variable "TF_VAR_NONPROD_ASSUMED_ROLE" {
+  type          = "string"
+  default       = null
+}
+variable "TF_VAR_NONPROD_AWS_ACCESS_KEY_ID" {
+  type          = "string"
+  default       = null
+}
+variable "TF_VAR_NONPROD_AWS_SECRET_ACCESS_KEY" {
+  type          = "string"
+  default       = null
+}
+variable "TF_VAR_NONPROD_AWS_SECURITY_TOKEN" {
+  type          = "string"
+  default       = null
+}
+#variable "dns_record" {
+#  type = "string"
+#}
