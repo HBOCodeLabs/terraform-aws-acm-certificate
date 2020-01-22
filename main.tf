@@ -2,8 +2,7 @@ resource "aws_acm_certificate" "this" {
   domain_name       = "${var.domain_name}"
   validation_method = "DNS"
 
-  #subject_alternative_names = "${var.subject_alternative_names}"
-  subject_alternative_names = "${concat(var.subject_alternative_names, var.subject_alternative_names_nonprod)}"
+  subject_alternative_names = "${compact(concat(var.subject_alternative_names, var.subject_alternative_names_alt))}"
 
   tags = {
     Name                      = "${var.certificate_name}"
@@ -16,58 +15,38 @@ resource "aws_acm_certificate" "this" {
   }
 }
 
-#resource "aws_route53_record" "this" {
-#  name    = "${aws_acm_certificate.this.domain_validation_options.0.resource_record_name}"
-#  type    = "${aws_acm_certificate.this.domain_validation_options.0.resource_record_type}"
-#  zone_id = "${element(compact(concat(list(var.hosted_zone_id), data.aws_route53_zone.zone.*.id)), 0)}"
-#  records = ["${aws_acm_certificate.this.domain_validation_options.0.resource_record_value}"]
-#  ttl     = 60
-#
-#  allow_overwrite = true
-#
-#  #provider = "aws.dns"
-#  provider = "aws.dns-sandbox"
-#}
-resource "aws_route53_record" "this_sandbox" {
-  name    = "${aws_acm_certificate.this.domain_validation_options.0.resource_record_name}"
-  type    = "${aws_acm_certificate.this.domain_validation_options.0.resource_record_type}"
+locals {
+  domain_validation_options     = [for s in aws_acm_certificate.this.domain_validation_options : s if contains(compact(concat(var.subject_alternative_names, list(var.domain_name))), s.domain_name)]
+  domain_validation_options_alt = [for s in aws_acm_certificate.this.domain_validation_options : s if contains(var.subject_alternative_names_alt, s.domain_name)]
+}
+
+resource "aws_route53_record" "this" {
+  count   = "${length(var.subject_alternative_names) + 1}"
+  name    = "${element(local.domain_validation_options, count.index).resource_record_name}"
+  type    = "${element(local.domain_validation_options, count.index).resource_record_type}"
   zone_id = "${element(compact(concat(list(var.hosted_zone_id), data.aws_route53_zone.zone.*.id)), 0)}"
-  records = ["${aws_acm_certificate.this.domain_validation_options.0.resource_record_value}"]
+  records = ["${element(local.domain_validation_options, count.index).resource_record_value}"]
+  ttl     = 60
+
+  allow_overwrite = true
+}
+
+resource "aws_route53_record" "alt" {
+  count   = "${length(var.subject_alternative_names_alt)}"
+  name    = "${element(local.domain_validation_options_alt, count.index).resource_record_name}"
+  type    = "${element(local.domain_validation_options_alt, count.index).resource_record_type}"
+  zone_id = "${element(compact(concat(list(var.hosted_zone_id_alt), data.aws_route53_zone.zone.*.id)), 0)}"
+  records = ["${element(local.domain_validation_options_alt, count.index).resource_record_value}"]
   ttl     = 60
 
   allow_overwrite = true
 
-  #provider = "aws.dns"
-  provider = "aws.dns-sandbox"
+  provider = aws.alt
 }
 
-resource "aws_route53_record" "this_nonprod" {
-  name    = "${aws_acm_certificate.this.domain_validation_options.0.resource_record_name}"
-  type    = "${aws_acm_certificate.this.domain_validation_options.0.resource_record_type}"
-  zone_id = "${element(compact(concat(list(var.hosted_zone_id_nonprod), data.aws_route53_zone.zone.*.id)), 0)}"
-  records = ["${aws_acm_certificate.this.domain_validation_options.0.resource_record_value}"]
-  ttl     = 60
 
-  allow_overwrite = true
-
-  #provider = "aws.dns"
-  provider = "aws.dns-nonprod"
-}
 resource "aws_acm_certificate_validation" "dns_validation" {
   certificate_arn         = "${aws_acm_certificate.this.arn}"
-  validation_record_fqdns = "${concat([aws_route53_record.this_sandbox.fqdn], var.subject_alternative_names)}"
-
-  provider = "aws.dns-sandbox"
-  #provider = "aws.dns"
-
   count = "${var.enable_validation ? 1 : 0}"
 }
 
-resource "aws_acm_certificate_validation" "dns_validation_nonprod" {
-  certificate_arn         = "${aws_acm_certificate.this.arn}"
-  validation_record_fqdns = "${var.subject_alternative_names_nonprod}"
-
-  provider = "aws.dns-nonprod"
-
-  count = "${var.enable_validation ? 1 : 0}"
-}

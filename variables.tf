@@ -29,18 +29,30 @@ variable "domain_name" {
   type        = "string"
 }
 
+variable "domain_name_alt" {
+  description = "Domain name the certificate is issued for."
+  type        = "string"
+}
+
 variable "hosted_zone_name" {
   description = "Need for DNS validation, hosted zone name where record validation will be stored."
   type        = "string"
   default     = ""
 }
+
+variable "hosted_zone_name_alt" {
+  description = "Need for DNS validation, hosted zone name where record validation will be stored."
+  type        = "string"
+  default     = ""
+}
+
 variable "hosted_zone_id" {
   description = "Need for DNS validation, hosted zone ID used when zone being created inline."
   type        = "string"
   default     = ""
 }
 
-variable "hosted_zone_id_nonprod" {
+variable "hosted_zone_id_alt" {
   description = "Need for DNS validation, hosted zone ID used when zone being created inline."
   type        = "string"
   default     = ""
@@ -54,11 +66,11 @@ variable "enable_validation" {
 variable "subject_alternative_names" {
   description = "A list of domains that should be SANs in the issued certificate"
   type        = "list"
-  default     = [] 
+  default     = []
 }
 
-variable "subject_alternative_names_nonprod" {
-  description = "A list of domains that should be SANs in the issued certificate"
+variable "subject_alternative_names_alt" {
+  description = "A list of domains that should be SANs in the issued certificate in another account"
   type        = "list"
-  default     = [] 
+  default     = []
 }
