@@ -12,5 +12,3 @@ hosted_zone_id = "Z1RFR1GBA4V8R5"
 hosted_zone_id_nonprod = "Z384J0FBY88JRX"
 
 enable_validation = "true"
-
-#hosted_zone_name = "sandbox.wmdtc.tech"
