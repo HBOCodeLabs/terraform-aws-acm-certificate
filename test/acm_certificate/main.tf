@@ -19,7 +19,7 @@ module "acm_cert" {
   enable_validation = "${var.enable_validation}"
 
   providers = {
-    aws.dns-sandbox = "aws"
+    aws.dns = "aws"
     aws.dns-nonprod = "aws.nonprod_us-east-1"
   }
 }
