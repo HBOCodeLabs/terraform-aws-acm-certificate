@@ -57,19 +57,19 @@ variable "subject_alternative_names_nonprod" {
   default     = [] 
 }
 
-variable "TF_VAR_NONPROD_ASSUMED_ROLE" {
+variable "nonprod_role_arn" {
   type          = "string"
   default       = null
 }
-variable "TF_VAR_NONPROD_AWS_ACCESS_KEY_ID" {
+variable "NONPROD_AWS_ACCESS_KEY_ID" {
   type          = "string"
   default       = null
 }
-variable "TF_VAR_NONPROD_AWS_SECRET_ACCESS_KEY" {
+variable "NONPROD_AWS_SECRET_ACCESS_KEY" {
   type          = "string"
   default       = null
 }
-variable "TF_VAR_NONPROD_AWS_SECURITY_TOKEN" {
+variable "NONPROD_AWS_SECURITY_TOKEN" {
   type          = "string"
   default       = null
 }
