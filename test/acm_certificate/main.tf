@@ -23,14 +23,3 @@ module "acm_cert" {
     aws.dns-nonprod = "aws.nonprod_us-east-1"
   }
 }
-
-#module "dns_zone" {
-#  source            = "git@github.com:HBOCodeLabs/terraform-aws-route53-zone.git?ref=2019.8.12.1-13"
-#
-#  region            = "${var.region}"
-#  environment       = "${var.environment}"
-#  cluster           = "${var.cluster}"
-#  service           = "${var.service}"
-#  project           = "${var.project}"
-#  name              = "${var.hosted_zone_name}"
-#}
