@@ -24,9 +24,34 @@ variable "certificate_name" {
   type        = "string"
 }
 
-variable "domain_name" {
+variable "domain_name_sandbox" {
   description = "Domain name the certificate is issued for."
   type        = "string"
+  default     = ""
+}
+
+variable "domain_name_nonprod" {
+  description = "Domain name the certificate is issued for."
+  type        = "string"
+  default     = ""
+}
+
+variable "domain_name_production" {
+  description = "Domain name the certificate is issued for."
+  type        = "string"
+  default     = ""
+}
+
+variable "domain_name_management" {
+  description = "Domain name the certificate is issued for."
+  type        = "string"
+  default     = ""
+}
+
+variable "domain_name_hbogo" {
+  description = "Domain name the certificate is issued for."
+  type        = "string"
+  default     = ""
 }
 
 variable "hosted_zone_name" {
@@ -58,7 +83,26 @@ variable "subject_alternative_names" {
 }
 
 variable "subject_alternative_names_nonprod" {
-  description = "A list of domains that should be SANs in the issued certificate"
-  type        = "list"
-  default     = [] 
+  type = "list"
+  default = []
+}
+
+variable "subject_alternative_names_sandbox" {
+  type = "list"
+  default = []
+}
+
+variable "subject_alternative_names_production" {
+  type = "list"
+  default = []
+}
+
+variable "subject_alternative_names_management" {
+  type = "list"
+  default = []
+}
+
+variable "subject_alternative_names_hbogo" {
+  type = "list"
+  default = []
 }

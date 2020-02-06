@@ -8,18 +8,20 @@ module "acm_cert" {
   project           = "${var.project}"
 
   certificate_name          = "${var.certificate_name}" 
-  domain_name               = "${var.domain_name}"
-  subject_alternative_names = "${var.subject_alternative_names}"
+  domain_name_sandbox       = "${var.domain_name_sandbox}"
 
-  subject_alternative_names_nonprod = "${var.subject_alternative_names_nonprod}"
-  
-  hosted_zone_id            = "${var.hosted_zone_id}"
-  hosted_zone_id_nonprod    = "${var.hosted_zone_id_nonprod}"
+  subject_alternative_names_sandbox = var.subject_alternative_names_sandbox
+  subject_alternative_names_nonprod = var.subject_alternative_names_nonprod
 
   enable_validation = "${var.enable_validation}"
 
   providers = {
-    aws.dns = "aws"
-    aws.dns-nonprod = "aws.nonprod_us-east-1"
+
+    aws.dns            = "aws"
+    aws.dns-nonprod    = "aws.nonprod_us-east-1"
+    #aws.dns-production = "aws.prod_us-east-1"
+    ##aws.dns-management = "aws.mgmt_us-east-1"
+    #aws.dns-hbogo      = "aws.hbogo_us-east-1"
+    #aws.dns-sandbox    = "aws.sandbox_us-east-1"
   }
 }

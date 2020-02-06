@@ -23,38 +23,34 @@ variable "vpc_id" {
 variable "certificate_name" {
   type        = "string"
 }
-variable "domain_name" {
+variable "domain_name_sandbox" {
   type        = "string"
+  default     = ""
+}
+variable "domain_name_nonprod" {
+  type        = "string"
+  default     = ""
 }
 
-#variable "hosted_zone_name" {
-#  type        = "string"
-#}
+variable "hosted_zone_name" {
+  type        = "string"
+  default     = ""
+}
 
 variable "hosted_zone_id" {
   type        = "string"
+  default     = ""
 }
 
 variable "hosted_zone_id_nonprod" {
   type        = "string"
+  default     = ""
 }
 
 variable "enable_validation" {
   description = "Should we run the validation step or not.  Used for testing"
   type        = "string"
   default     = "true"
-}
-
-variable "subject_alternative_names" {
-  description = "A list of domains that should be SANs in the issued certificate"
-  type        = "list"
-  default     = [] 
-}
-
-variable "subject_alternative_names_nonprod" {
-  description = "A list of domains that should be SANs in the issued certificate"
-  type        = "list"
-  default     = [] 
 }
 
 variable "nonprod_role_arn" {
@@ -73,6 +69,11 @@ variable "NONPROD_AWS_SECURITY_TOKEN" {
   type          = "string"
   default       = null
 }
-#variable "dns_record" {
-#  type = "string"
-#}
+variable "subject_alternative_names_nonprod" {
+  type = "list"
+  default = []
+}
+variable "subject_alternative_names_sandbox" {
+  type = "list"
+  default = []
+}

@@ -6,3 +6,23 @@ provider "aws" {
 provider "aws" {
   alias = "dns-nonprod"
 }
+
+provider "aws" {
+  region = var.region
+  alias = "dns-production"
+}
+
+provider "aws" {
+  region = var.region
+  alias = "dns-hbogo"
+}
+
+provider "aws" {
+  region = var.region
+  alias = "dns-sandbox"
+}
+
+provider "aws" {
+  region = var.region
+  alias = "dns-management"
+}
