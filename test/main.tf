@@ -1,5 +1,5 @@
 module "acm_cert" {
-  source            = "./../.."
+  source            = "./.."
 
   region            = "${var.region}"
   environment       = "${var.environment}"
@@ -9,17 +9,19 @@ module "acm_cert" {
 
   certificate_name          = "${var.certificate_name}" 
   domain_name               = "${var.domain_name}"
-  subject_alternative_names = "${var.subject_alternative_names}"
 
-  subject_alternative_names_nonprod = "${var.subject_alternative_names_nonprod}"
-  
-  hosted_zone_id            = "${var.hosted_zone_id}"
-  hosted_zone_id_nonprod    = "${var.hosted_zone_id_nonprod}"
+  subject_alternative_names_sandbox = "${var.subject_alternative_names_sandbox}"
+
+  hosted_zone_name          = "${var.hosted_zone_name}"
+  hosted_zone_names_sandbox    = "${var.hosted_zone_names_sandbox}"
 
   enable_validation = "${var.enable_validation}"
 
   providers = {
     aws.dns = "aws"
-    aws.dns-nonprod = "aws.nonprod_us-east-1"
+    aws.mgmt = "aws"
+    aws.nonprod = "aws"
+    aws.sandbox = "aws"
+    aws.hbogo = "aws"
   }
 }

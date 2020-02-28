@@ -25,11 +25,28 @@ with 0.11 is version 2019.2.15.2-8.
 | domain_name | Domain name the certificate is issued for | string | `None` | yes |
 | hosted_zone_name | Need for DNS validation, hosted zone name where record validation will be stored | string | `Empty` | no |
 | hosted_zone_id | Need for DNS validation, hosted zone ID used when zone being created inline | string | `Empty` | no |
+| subject_alternative_names_mgmt | A list of domains that should be SANs in the issued certificate in mgmt | list | [] | no |
+| hosted_zone_names_mgmt | The hosted zones for the mgmt alternates | list | [] | no |
+| subject_alternative_names_nonprod | A list of domains that should be SANs in the issued certificate in nonprod | list | [] | no |
+| hosted_zone_names_nonprod | The hosted zones for the nonprod alternates | list | [] | no |
+| subject_alternative_names_hbogo | A list of domains that should be SANs in the issued certificate in hbogo | list | [] | no |
+| hosted_zone_names_hbogo | The hosted zones for the hbogo alternates | list | [] | no |
+| subject_alternative_names_sandbox | A list of domains that should be SANs in the issued certificate | list | [] | no |
+| hosted_zone_names_sandbox | The hosted zones for the sandbox alternates | list | [] | no |
 | enable_validation | Should we run the validation step or not.  Used for testing | string | `true` | no |
 
 ## Outputs
 | Name | Description |
 |------|-------------|
 | acm_certificate_arn | arn of acm certificate |
-| acm_certificate_dns_validation_record | record which is used to validate acm certificate |
-| acm_certificate_domain_name | the domain name of the certificate |
+| acm_certificate_dns_validation_records | records which are used to validate acm certificate |
+
+## Providers 
+| Name | Description |
+|------|-------------|
+| aws | The account the certificaite will be created in |
+| aws.dns | The account that the core validation record is created in |
+| aws.mgmt | The mgmt account for alternates in the mgmt account |
+| aws.nonprod | The nonprod account for alternates in the nonprod account |
+| aws.sandbox | The sandbox account for alternates in the sandbox account |
+| aws.hbogo | The hbogo account for alternates in the hbogo account |

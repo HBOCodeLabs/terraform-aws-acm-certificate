@@ -4,5 +4,17 @@ provider "aws" {
 }
 
 provider "aws" {
-  alias = "dns-nonprod"
+  alias = "mgmt"
+}
+
+provider "aws" {
+  alias = "nonprod"
+}
+
+provider "aws" {
+  alias = "hbogo"
+}
+
+provider "aws" {
+  alias = "sandbox"
 }

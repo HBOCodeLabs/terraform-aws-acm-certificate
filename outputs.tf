@@ -3,17 +3,13 @@ output "acm_certificate_arn" {
   value       = "${aws_acm_certificate.this.arn}"
 }
 
-output "acm_certificate_dns_validation_record" {
+output "acm_certificate_dns_validation_records" {
   description = "record which is used to validate acm certificate"
-  value       = "${aws_route53_record.this.name}"
-}
-
-output "acm_certificate_dns_validation_record_nonprod" {
-  description = "record which is used to validate acm certificate"
-  value       = "${aws_route53_record.this_nonprod.name}"
-}
-
-output "acm_certificate_domain_name" {
-  description = "the domain name of the certificate"
-  value       = "${aws_acm_certificate.this.domain_name}"
+  value       = "${concat(
+    list(aws_route53_record.core_zone.fqdn),
+    aws_route53_record.mgmt_zones.*.fqdn,
+    aws_route53_record.nonprod_zones.*.fqdn,
+    aws_route53_record.sandbox_zones.*.fqdn,
+    aws_route53_record.hbogo_zones.*.fqdn
+    )}"
 }
