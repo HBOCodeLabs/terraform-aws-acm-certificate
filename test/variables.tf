@@ -36,3 +36,12 @@ variable "enable_validation" {
   type        = "string"
   default     = "true"
 }
+
+variable "subject_alternative_names_sandbox" {
+  description = "A list of domains that should be SANs in the issued certificate"
+  type        = "list"
+}
+variable "hosted_zone_names_sandbox" {
+  description = "The hosted zones for the mgmt alternates"
+  type        = "list"
+}

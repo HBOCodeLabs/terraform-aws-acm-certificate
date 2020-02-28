@@ -4,8 +4,11 @@ cluster = "sre"
 service = "ecs"
 project = "srecore"
 
-hosted_zone_name = "sandbox-terratest.hbo.com"
+certificate_name = "test-cert.sandbox.wmdtc.tech"
+domain_name = "test-cert.sandbox.wmdtc.tech"
+hosted_zone_name = "sandbox.wmdtc.tech"
 
-domain_name = "*.sandbox-terratest.hbo.com"
-certificate_name = "sandbox-terratest.hbo.com"
-enable_validation = "false"
+subject_alternative_names_sandbox = ["test-cert2.sandbox.wmdtc.tech"]
+hosted_zone_names_sandbox = ["sandbox.wmdtc.tech"]
+
+enable_validation = "true"
