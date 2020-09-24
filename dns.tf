@@ -65,3 +65,17 @@ resource "aws_route53_record" "hbogo_zones" {
 
   provider = "aws.hbogo"
 }
+
+resource "aws_route53_record" "production_zones" {
+  name    = "${local.production_validation[count.index].resource_record_name}"
+  type    = "${local.production_validation[count.index].resource_record_type}"
+  zone_id = "${data.aws_route53_zone.production_zones[index(var.subject_alternative_names_production, local.production_validation[count.index].domain_name)].id}"
+  records = ["${local.production_validation[count.index].resource_record_value}"]
+  ttl     = 60
+
+  allow_overwrite = true
+
+  count   = "${length(var.subject_alternative_names_production)}"
+
+  provider = "aws.production"
+}

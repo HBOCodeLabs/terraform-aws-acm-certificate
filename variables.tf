@@ -89,3 +89,13 @@ variable "hosted_zone_names_sandbox" {
   type        = "list"
   default     = []
 }
+variable "subject_alternative_names_production" {
+  description = "A list of domains that should be SANs in the issued certificate"
+  type        = "list"
+  default     = []
+}
+variable "hosted_zone_names_production" {
+  description = "The hosted zones for the production alternates"
+  type        = "list"
+  default     = []
+}

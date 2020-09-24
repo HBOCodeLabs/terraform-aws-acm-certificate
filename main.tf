@@ -6,7 +6,8 @@ resource "aws_acm_certificate" "this" {
     var.subject_alternative_names_mgmt,
     var.subject_alternative_names_nonprod,
     var.subject_alternative_names_hbogo,
-    var.subject_alternative_names_sandbox
+    var.subject_alternative_names_sandbox,
+    var.subject_alternative_names_production
   )}"
 
   tags = {
