@@ -95,7 +95,7 @@ variable "subject_alternative_names_production" {
   default     = []
 }
 variable "hosted_zone_names_production" {
-  description = "The hosted zones for the sandbox alternates"
+  description = "The hosted zones for the production alternates"
   type        = "list"
   default     = []
 }
