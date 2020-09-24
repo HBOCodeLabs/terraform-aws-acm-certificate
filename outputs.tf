@@ -10,6 +10,7 @@ output "acm_certificate_dns_validation_records" {
     aws_route53_record.mgmt_zones.*.fqdn,
     aws_route53_record.nonprod_zones.*.fqdn,
     aws_route53_record.sandbox_zones.*.fqdn,
-    aws_route53_record.hbogo_zones.*.fqdn
+    aws_route53_record.hbogo_zones.*.fqdn,
+    aws_route53_record.production_zones.*.fqdn
     )}"
 }

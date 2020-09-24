@@ -33,6 +33,8 @@ with 0.11 is version 2019.2.15.2-8.
 | hosted_zone_names_hbogo | The hosted zones for the hbogo alternates | list | [] | no |
 | subject_alternative_names_sandbox | A list of domains that should be SANs in the issued certificate | list | [] | no |
 | hosted_zone_names_sandbox | The hosted zones for the sandbox alternates | list | [] | no |
+| subject_alternative_names_production | A list of domains that should be SANs in the issued certificate in production | list | [] | no |
+| hosted_zone_names_production | The hosted zones for the production alternates | list | [] | no |
 | enable_validation | Should we run the validation step or not.  Used for testing | string | `true` | no |
 
 ## Outputs
@@ -50,3 +52,4 @@ with 0.11 is version 2019.2.15.2-8.
 | aws.nonprod | The nonprod account for alternates in the nonprod account |
 | aws.sandbox | The sandbox account for alternates in the sandbox account |
 | aws.hbogo | The hbogo account for alternates in the hbogo account |
+| aws.production | The production account for alternates in the production account |

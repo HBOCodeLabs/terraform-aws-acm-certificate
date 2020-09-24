@@ -18,3 +18,7 @@ provider "aws" {
 provider "aws" {
   alias = "sandbox"
 }
+
+provider "aws" {
+  alias = "production"
+}

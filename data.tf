@@ -42,3 +42,12 @@ data "aws_route53_zone" "sandbox_zones" {
 
   count         = "${length(var.hosted_zone_names_sandbox)}"
 }
+
+data "aws_route53_zone" "production_zones" {
+  name          = "${var.hosted_zone_names_production[count.index]}"
+  private_zone  = "false"
+
+  provider      = "aws.sandbox"
+
+  count         = "${length(var.hosted_zone_names_production)}"
+}
