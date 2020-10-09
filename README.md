@@ -42,6 +42,7 @@ with 0.11 is version 2019.2.15.2-8.
 |------|-------------|
 | acm_certificate_arn | arn of acm certificate |
 | acm_certificate_dns_validation_records | records which are used to validate acm certificate |
+| acm_certificate_domain_name | The domain to be validated |
 
 ## Providers 
 | Name | Description |
