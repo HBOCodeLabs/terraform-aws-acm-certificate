@@ -7,8 +7,7 @@ resource "aws_route53_record" "core_zone" {
       name    = dvo.resource_record_name
       record  = dvo.resource_record_value
       type    = dvo.resource_record_type
-      if dvo.domain_name == var.domain_name
-    }
+    } if dvo.domain_name == var.domain_name
   }
 
   allow_overwrite   = true
@@ -28,8 +27,7 @@ resource "aws_route53_record" "mgmt_zones" {
       name    = dvo.resource_record_name
       record  = dvo.resource_record_value
       type    = dvo.resource_record_type
-      if contains(var.subject_alternative_names_mgmt, dvo.domain_name)
-    }
+    } if contains(var.subject_alternative_names_mgmt, dvo.domain_name)
   }
 
   allow_overwrite   = true
@@ -49,8 +47,7 @@ resource "aws_route53_record" "nonprod_zones" {
       name    = dvo.resource_record_name
       record  = dvo.resource_record_value
       type    = dvo.resource_record_type
-      if contains(var.subject_alternative_names_nonprod, dvo.domain_name)
-    }
+    } if contains(var.subject_alternative_names_nonprod, dvo.domain_name)
   }
 
   allow_overwrite   = true
@@ -70,8 +67,7 @@ resource "aws_route53_record" "sandbox_zones" {
       name    = dvo.resource_record_name
       record  = dvo.resource_record_value
       type    = dvo.resource_record_type
-      if contains(var.subject_alternative_names_sandbox, dvo.domain_name)
-    }
+    } if contains(var.subject_alternative_names_sandbox, dvo.domain_name)
   }
 
   allow_overwrite   = true
@@ -91,8 +87,7 @@ resource "aws_route53_record" "hbogo_zones" {
       name    = dvo.resource_record_name
       record  = dvo.resource_record_value
       type    = dvo.resource_record_type
-      if contains(var.subject_alternative_names_hbogo, dvo.domain_name)
-    }
+    } if contains(var.subject_alternative_names_hbogo, dvo.domain_name)
   }
 
   allow_overwrite   = true
@@ -112,8 +107,7 @@ resource "aws_route53_record" "production_zones" {
       name    = dvo.resource_record_name
       record  = dvo.resource_record_value
       type    = dvo.resource_record_type
-      if contains(var.subject_alternative_names_production, dvo.domain_name)
-    }
+    } if contains(var.subject_alternative_names_production, dvo.domain_name)
   }
 
   allow_overwrite   = true
