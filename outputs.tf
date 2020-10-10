@@ -14,12 +14,12 @@ output "acm_certificate_domain_name" {
 ### Validation outputs
 output "acm_certificate_dns_validation_records" {
   description = "record which is used to validate acm certificate"
-  value       = "${concat(
+  value       = concat(
     list(aws_route53_record.core_zone.fqdn),
     aws_route53_record.mgmt_zones.*.fqdn,
     aws_route53_record.nonprod_zones.*.fqdn,
     aws_route53_record.sandbox_zones.*.fqdn,
     aws_route53_record.hbogo_zones.*.fqdn,
     aws_route53_record.production_zones.*.fqdn
-    )}"
+    )
 }
