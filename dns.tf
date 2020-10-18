@@ -15,7 +15,7 @@ resource "aws_route53_record" "core_zone" {
   name              = each.value.name
   type              = each.value.type
   records           = [each.value.record]
-  zone_id           = data.aws_route53_zone.zone.zone_id
+  zone_id           = data.aws_route53_zone.zone[each.value].zone_id
 }
 
 resource "aws_route53_record" "mgmt_zones" {
@@ -35,7 +35,7 @@ resource "aws_route53_record" "mgmt_zones" {
   name              = each.value.name
   type              = each.value.type
   records           = [each.value.record]
-  zone_id           = data.aws_route53_zone.mgmt_zones.zone_id
+  zone_id           = data.aws_route53_zone.mgmt_zones[each.value].zone_id
 }
 
 resource "aws_route53_record" "nonprod_zones" {
@@ -55,7 +55,7 @@ resource "aws_route53_record" "nonprod_zones" {
   name              = each.value.name
   type              = each.value.type
   records           = [each.value.record]
-  zone_id           = data.aws_route53_zone.nonprod_zones.zone_id
+  zone_id           = data.aws_route53_zone.nonprod_zones[each.value].zone_id
 }
 
 resource "aws_route53_record" "sandbox_zones" {
@@ -75,7 +75,7 @@ resource "aws_route53_record" "sandbox_zones" {
   name              = each.value.name
   type              = each.value.type
   records           = [each.value.record]
-  zone_id           = data.aws_route53_zone.sandbox_zones.zone_id
+  zone_id           = data.aws_route53_zone.sandbox_zones[each.value].zone_id
 }
 
 resource "aws_route53_record" "hbogo_zones" {
@@ -95,7 +95,7 @@ resource "aws_route53_record" "hbogo_zones" {
   name              = each.value.name
   type              = each.value.type
   records           = [each.value.record]
-  zone_id           = data.aws_route53_zone.hbogo_zones.zone_id
+  zone_id           = data.aws_route53_zone.hbogo_zones[each.value].zone_id
 }
 
 resource "aws_route53_record" "production_zones" {
@@ -115,5 +115,5 @@ resource "aws_route53_record" "production_zones" {
   name              = each.value.name
   type              = each.value.type
   records           = [each.value.record]
-  zone_id           = data.aws_route53_zone.production_zones.zone_id
+  zone_id           = data.aws_route53_zone.production_zones[each.value].zone_id
 }
