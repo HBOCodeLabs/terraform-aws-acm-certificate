@@ -1,53 +1,47 @@
 data "aws_route53_zone" "zone" {
-  name          = var.hosted_zone_name
-  private_zone  = "false"
-
   provider      = "aws.dns"
 
-  count         = var.hosted_zone_name != "" ? 1 : 0
+  private_zone  = false
+  for_each      = local.hzn
+  name          = each.value
 }
 
 data "aws_route53_zone" "mgmt_zones" {
-  name          = var.hosted_zone_names_mgmt[count.index]
-  private_zone  = "false"
-
   provider      = "aws.mgmt"
 
-  count         = length(var.hosted_zone_names_mgmt)
+  private_zone  = false
+  for_each      = toset(var.hosted_zone_names_mgmt)
+  name          = each.value
 }
 
 data "aws_route53_zone" "nonprod_zones" {
-  name          = var.hosted_zone_names_nonprod[count.index]
-  private_zone  = "false"
-
   provider      = "aws.nonprod"
 
-  count         = length(var.hosted_zone_names_nonprod)
+  private_zone  = false
+  for_each      = toset(var.hosted_zone_names_nonprod)
+  name          = each.value
 }
 
 data "aws_route53_zone" "hbogo_zones" {
-  name          = var.hosted_zone_names_hbogo[count.index]
-  private_zone  = "false"
-
   provider      = "aws.hbogo"
 
-  count         = length(var.hosted_zone_names_hbogo)
+  private_zone  = false
+  for_each      = toset(var.hosted_zone_names_hbogo)
+  name          = each.value
 }
 
 data "aws_route53_zone" "sandbox_zones" {
-  name          = var.hosted_zone_names_sandbox[count.index]
-  private_zone  = "false"
-
   provider      = "aws.sandbox"
 
-  count         = length(var.hosted_zone_names_sandbox)
+  private_zone  = false
+  for_each      = toset(var.hosted_zone_names_sandbox)
+  name          = each.value
 }
 
 data "aws_route53_zone" "production_zones" {
-  name          = var.hosted_zone_names_production[count.index]
-  private_zone  = "false"
-
   provider      = "aws.production"
 
-  count         = length(var.hosted_zone_names_production)
+  private_zone  = false
+  for_each      = toset(var.hosted_zone_names_production)
+  name          = each.value
 }
