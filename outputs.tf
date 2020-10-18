@@ -1,13 +1,13 @@
 ## Certificate outputs
 output "acm_certificate_arn" {
-  description = "arn of acm certificate"
-  value       = aws_acm_certificate.this.arn
+  description   = "arn of acm certificate"
+  value         = aws_acm_certificate.this.arn
 }
 
 
 output "acm_certificate_domain_name" {
-  description = "domain name of acm certificate"
-  value = aws_acm_certificate.this.domain_name
+  description   = "domain name of acm certificate"
+  value         = aws_acm_certificate.this.domain_name
 }
 
 
